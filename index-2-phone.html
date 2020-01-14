@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Responsive Tip Calculator</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="reset.css">  <!--reset browser out of default-->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    /* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+    body {
+      background-color: #151f2f;
+      font-family: sans-serif;
+      text-transform: uppercase;
+    }
+
+    /********Colors*********
+    #e88499 light red almost purple
+    #eb264b red
+    #a39a9b grey
+    #e9e9e9 light grey
+    #151f2f Black
+    ***********************/
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    h2 {
+      font-size: 50px;
+      color: #a39a9b;
+    }
+
+    /***Enter bill amount section**/
+    #bill-amount-section {
+      width: 100%;
+      padding-top: 40px;
+    }
+    #bill-amount-section label {
+      font-size: 80px;
+      color: #eb264b;
+      width: 5%;
+    }
+    #bill-amount-section input {
+      background-color: inherit;
+      border: none;
+      width: 85%;
+      height: 80px;
+      box-sizing: border-box;
+      color: #eb264b;
+      font-size: 80px;
+      padding-top: 20px;
+    }
+    #bill-amount-section .fa {
+      color: #a39a9b;
+      font-size: 50px;
+      width: 5%;
+    }
+
+    /***Tip Selection section***/
+    #tip-select-section {
+      width: 100%;
+      padding-top: 15px;
+      font-family: sans-serif;
+      margin-top: 40px;
+    }
+    #tip-select-section select {
+      width: 70%;
+      height: 80px;
+      background-color: inherit;
+      color: #e9e9e9;
+      font-size: 80px;
+      border: none;
+      margin-top: 20px;
+    }
+    #tip-select-section option {
+      color: #e9e9e9;
+      font-size: 30px;
+      background-color: #151f2f;
+    }
+
+    /**Split the bill section**/
+    #split-section {
+      width: 100%;
+      padding-top: 15px;
+      font-family: sans-serif;
+      margin-top: 40px;
+    }
+    #split-section input {
+      width: 70%;
+      height: 80px;
+      font-size: 80px;
+      color: #e9e9e9;
+      background-color: inherit;
+      border: none;
+    }
+    #split-section input::placeholder {
+      color: #e9e9e9;
+    }
+
+    /***Calculate button section**/
+    #calculate-button-section {
+      width: 100%;
+      margin-top: 40px;
+    }
+    button {
+      height: 80px;
+      width: 160px;
+      margin-left: 42%;
+      background-color: inherit;
+      border: 1px solid #e9e9e9;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      color: #eb264b;
+      font-size: 35px;
+    }
+
+    /**Total tip section**/
+    #totalTip {
+      width: 100%;
+      height: 209px;
+      text-align: center;
+      background-color: #eb264b;
+      font-family: sans-serif;
+      margin-top: 40px;
+      padding-top: 20px;
+      position: relative;
+      bottom: 0;
+    }
+    #totalTip label {
+      color: #e9e9e9;
+      font-size: 80px;
+      font-weight: 100;
+    }
+    #totalTip span {
+      color: #e9e9e9;
+      font-size: 80px;
+      font-weight: 100;
+    }
+    #totalTip small {
+      color: #151f2f;
+      font-size: 70px;
+      padding-top: 5px;
+    }
+
+/**Mobile devices********/
+@media only screen and (max-width: 767px) {
+    h2 {
+       font-size: 25px; 
+    }
+    /***Enter bill amount section**/
+    #bill-amount-section label {
+        font-size: 60px;
+    }
+    #bill-amount-section input {
+        height: 60px;
+        font-size: 60px;
+        width: 75%;
+    }
+    #bill-amount-section .fa {
+        font-size: 30px;
+    }
+    /***Tip Selection section***/
+    #tip-select-section {
+        margin-top: 25px;
+    }
+    #tip-select-section select {
+        height: 60px;
+        font-size: 35px;
+        margin-top: 10px;
+    }
+    /**Split the bill section**/
+    #split-section {
+        margin-top: 25px;
+    }
+    #split-section input {
+        height: 60px;
+        font-size: 35px;
+    }
+    /***Calculate button section**/
+    #calculate-button-section {
+        margin-top: 25px;
+    }
+    button {
+        margin-left: 30%;
+        height: 70px;
+        font-size: 30px;
+    }
+    /**Total tip section**/
+    #totalTip {
+        padding-top: 60px;
+        margin-top: 25px;
+    }
+    #totalTip label {
+        font-size: 60px;
+    }
+    #totalTip span {
+        font-size: 60px;
+    }
+    #totalTip small {
+        font-size: 40px;
+    }
+}
+    /*
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      color: #a39a9b;
+      padding-bottom: 7px;
+    }
+    */
+
+    /***Enter bill amount section**/
+    /*
+    #bill-amount-section {
+      width: 100%;
+      height: 100px;
+      padding-top: 15px;
+      font-family: sans-serif;
+      background-color: blue;
+    }
+    #bill-amount-section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    #bill-amount-section label {
+      font-size: 1.8rem;
+      color: #eb264b;
+      width: 5%;
+    }
+    #bill-amount-section input {
+      background-color: inherit;
+      border: none;
+      width: 85%;
+      height: 40px;
+      box-sizing: border-box;
+      color: #eb264b;
+      font-size: 30px;
+    }
+    #bill-amount-section .fa {
+      color: #a39a9b;
+      font-size: 1.3rem;
+    }
+    */
+
+    /***Tip Selection section***/
+    /*
+    #tip-select-section {
+      width: 100%;
+      height: 100px;
+      padding-top: 15px;
+      font-family: sans-serif;
+      margin-top: 20px;
+      background-color: green;
+    }
+    #tip-select-section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    #tip-select-section select {
+      width: 70%;
+      height: 40px;
+      background-color: inherit;
+      color: #e9e9e9;
+      font-size: 20px;
+      border: none;
+    }
+    #tip-select-section option {
+      color: #e9e9e9;
+      font-size: 20px;
+      background-color: #151f2f;
+    }
+    */
+
+    /**Split the bill section**/
+    /*
+    #split-section {
+      width: 100%;
+      height: 100px;
+      padding-top: 15px;
+      font-family: sans-serif;
+      margin-top: 20px;
+      background-color: yellow;
+    }
+    #split-section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    #split-section input {
+      width: 70%;
+      height: 40px;
+      font-size: 20px;
+      color: #e9e9e9;
+      background-color: inherit;
+      border: none;
+    }
+    #split-section input::placeholder {
+      color: #e9e9e9;
+    }
+    */
+
+    /***Calculate button section**/
+    /*
+    #calculate-button-section {
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+      background-color: purple;
+    }
+    #calculate-button-section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    button {
+      height: 35px;
+      margin-left: 42%;
+      background-color: inherit;
+      border: 1px solid #e9e9e9;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      color: #eb264b;
+      font-size: 15px;
+    }
+    */
+
+    /**Total tip section**/
+    /*
+    #totalTip {
+      width: 100%;
+      height: 142px;
+      text-align: center;
+      background-color: #eb264b;
+      padding-top: 40px;
+      margin-left: 0;
+      padding-left: 0;
+      font-family: sans-serif;
+      margin-top: 20px;
+      position: relative;
+      bottom: 0;
+    }
+    #totalTip::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    #totalTip label {
+      color: #e9e9e9;
+      font-size: 50px;
+      font-weight: 100;
+    }
+    #totalTip span {
+      color: #e9e9e9;
+      font-size: 50px;
+      font-weight: 100;
+    }
+    #totalTip small {
+      color: #151f2f;
+      font-size: 20px;
+      padding-top: 5px;
+    }
+
+
+
+    @media only screen and (max-height: 812px) {
+      h2 {
+        font-size: 1.5rem;
+      }
+      #bill-amount-section {
+        height: 150px
+      }
+      #bill-amount-section label {
+          font-size: 3.2rem;
+      }
+      #bill-amount-section input {
+        background-color: inherit;
+        border: none;
+        width: 80%;
+        height: 80px;
+        box-sizing: border-box;
+        color: #eb264b;
+        font-size: 50px;
+      }
+    }
+    */
+
+    </style>
+</head>
+
+  <body>
+        <!--Price of Bill Section-->
+          <section id="bill-amount-section">
+            <div class="container">
+              <h2>Bill Amount</h2>
+              <label for="">$</label>
+              <input id="billAmt" type="text">
+              <!--<i class="fa fa-refresh" aria-hidden="true"></i>-->
+            </div>
+          </section>
+
+            <!--Percentage section-->
+          <section id="tip-select-section">
+            <div class="container">
+              <h2>Tip</h2>  <!--Could of used Label tag-->
+              <select id="servQual">
+                <option>Select Tip</option>
+                <option value="0.30">30&#37; &#45; Excellent</option>
+                <option value="0.18">18&#37; &#45; Good</option>
+                <option value="0.15">15&#37; &#45; Average</option>
+                <option value="0.10">10&#37; &#45; Needs Improvement</option>
+                <option value="0.05">5&#37; &#45; Do not come back</option>
+              </select>
+            </div>
+          </section>
+
+            <!--Split bill section-->
+          <section id="split-section">
+            <div class="container">
+              <h2>Split</h2>
+              <input id="numOfPeople" type="number" placeholder="People?">
+            </div>
+          </section>
+
+            <!--Calculate button-->
+          <section id="calculate-button-section">
+            <div class="container">
+              <button type="button" id="calculate">Calculate</button>
+            </div>
+          </section>
+
+          <!--Tip total-->
+        <div id="totalTip">
+          <div class="container">
+            <label>$</label><span id="tip">0.00</span>
+            <small id="each">Each Person</small>
+        </div>
+      </div>
+  <script type="text/javascript" src="app.js"></script>
+
+  <script type="text/javascript">
+      function calculateTip() {
+        //declare variables
+        let billAmt = document.getElementById("billAmt").value;
+        let servQual = document.getElementById("servQual").value;
+        let numOfPeople = document.getElementById("numOfPeople").value;
+
+        //If nothing is entered into input boxes
+        if (billAmt === "" || servQual === 0) {
+          alert("Please enter values!");
+          return;//had this after curly brackets and ran into issues...function stopped because return statement is out of the if statement
+        }
+
+        //Check to see if numOfPeople is empty or equal to 1
+        if (numOfPeople === "" || numOfPeople <= 1) {
+          numOfPeople = 1;
+          document.getElementById("each").style.display = "none";
+        } else {
+          document.getElementById("each").style.display = "block";
+        }
+        //Calculate Tip function
+        let sumNum = (billAmt * servQual) / numOfPeople;
+        //round to 2 decimal places
+        sumNum = Math.round(sumNum * 100) / 100;
+        //Display tip
+        document.getElementById("totalTip").style.display = "block";
+        document.getElementById("tip").innerHTML = sumNum.toFixed(2);
+      }
+      //Hide tip on load
+      //document.getElementById("totalTip").style.display = "none";
+      document.getElementById("each").style.display = "none";
+
+      //calling function
+      document.getElementById("calculate").onclick = function() {
+        calculateTip();
+      };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Responsive Tip Calculator</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="reset.css">  <!--reset browser out of default-->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+      <!--Price of Bill Section-->
+        <section id="bill-amount-section">
+          <div class="container">
+            <h2>Bill Amount</h2>
+            <label for="">$</label>
+            <input id="billAmt" type="text">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </div>
+        </section>
+
+          <!--Percentage section-->
+        <section id="tip-select-section">
+          <div class="container">
+            <h2>Tip</h2>  <!--Could of used Label tag-->
+            <select id="servQual">
+              <option>Select Tip</option>
+              <option value="0.30">30&#37; &#45; Excellent</option>
+              <option value="0.18">18&#37; &#45; Good</option>
+              <option value="0.15">15&#37; &#45; Average</option>
+              <option value="0.10">10&#37; &#45; Needs Improvement</option>
+              <option value="0.05">5&#37; &#45; Do not come back</option>
+            </select>
+          </div>
+        </section>
+
+          <!--Split bill section-->
+        <section id="split-section">
+          <div class="container">
+            <h2>Split</h2>
+            <input id="numOfPeople" type="number" placeholder="People?">
+          </div>
+        </section>
+
+          <!--Calculate button-->
+        <section id="calculate-button-section">
+          <div class="container">
+            <button type="button" id="calculate">Calculate</button>
+          </div>
+        </section>
+
+        <!--Tip total-->
+      <div id="totalTip">
+        <div class="container">
+          <label>$</label><span id="tip">0.00</span>
+          <small id="each">Each Person</small>
+      </div>
+    </div>
+<script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
